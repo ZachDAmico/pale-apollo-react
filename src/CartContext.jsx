@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { merchArray } from "./merch";
+import { merchArray, getMerchData } from "./merch";
 
 export const CartContext = createContext({
   items: [],
@@ -61,12 +61,47 @@ export function CartProvider({ children }) {
     }
   };
 
+  const removeOneFromCart = (id) => {
+    const quantity = getItemQuantity(id);
+
+    if (quantity == 1) {
+      deleteAllOfOneItemFromCart(id);
+    } else {
+      // same logic as addOneToCart, but -
+      setCartItems(
+        cartItems.map(
+          (item) =>
+            item.id === id // if condition
+              ? { ...item, quantity: item.quantity - 1 } // if condition is true, do this(ternary statement)
+              : item, //else if first condition is false
+        ),
+      );
+    }
+  };
+
+  // passing in id of item you want to delete
   const deleteAllOfOneItemFromCart = (id) => {
+    // need to set the state here so that the function has access to and knows what's in the cart aka current state
+    // all objects in the cart are defined as cartItems - which is a new array
     setCartItems((cartItems) =>
+      // then call filter method on that array to loop through each object(defined as currentItem) in cartItems array
       cartItems.filter((currentItem) => {
+        // checking condition that each iteration's(currentItem)'s id is not equal to the id passed in(which is what we want to delete)
+        // if condition met, adding object to new array that's still called cartItems, which triggers state to reset - effectively updating the same cartItems and rerendering
+        // .filter() automatically loops, builds "new" array, and checks condition provided - all that's needed is the actual condition to check
         return currentItem.id != id;
       }),
     );
+  };
+  // no explicit delete functionality, we are just rerendering the cart state sans whatever id matches, which acts the same as deleting
+  // the id property will be getting passed back here by the onClick function call that will pass the item.id as an argument
+
+  const getTotalCostOfCart = () => {
+    let totalCost = 0;
+    cartItems.map((cartItem) => {
+      const merchItemData = getMerchData(cartItem.id);
+      totalCost += merchItemData.price * cartItem.quantity;
+    });
   };
 
   const contextValue = {
