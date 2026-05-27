@@ -96,12 +96,19 @@ export function CartProvider({ children }) {
   // no explicit delete functionality, we are just rerendering the cart state sans whatever id matches, which acts the same as deleting
   // the id property will be getting passed back here by the onClick function call that will pass the item.id as an argument
 
+  // this doesn't need a parameter because cartItems are inside the Provider scope so it has all the data it needs already.
+  // only need parameter when data outside the function is needed
+  // other functions need an id because they are targeting 1 item don't know which item to act on until you tell them, which is determined outside the Provider scope in other modules, and you need to tell the function where to look for the needed data
   const getTotalCostOfCart = () => {
     let totalCost = 0;
+    // still have access to cartItems because we're inside Provider
     cartItems.map((cartItem) => {
+      // saving the data collected from the getMerchData imported function in new merchItemData variable for each merch item(why we need to pass cartItem.id as argument)
+      // we have access to properties of the array objects while we map
       const merchItemData = getMerchData(cartItem.id);
       totalCost += merchItemData.price * cartItem.quantity;
     });
+    return totalCost;
   };
 
   const contextValue = {
@@ -116,6 +123,9 @@ export function CartProvider({ children }) {
     getTotalCostOfCart,
   };
   return (
+    // we can now access functions above because we're passing the contextValue(which holds the data gathered by functions)
     <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
   );
 }
+
+export default CartProvider;
