@@ -8,6 +8,28 @@ function NavBarComponent() {
   const [show, setShow] = useState(false);
   const closeModal = () => setShow(false);
   const openModal = () => setShow(true);
+  const checkout = async () => {
+    await fetch("http://localhost:4000/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // we have access to cart.items because of the useContext above
+      // this is where we pass items in cart over to backend to be formatted in the server.json
+      body: JSON.stringify({ items: cart.items }),
+    })
+      .then((response) => {
+        return response.json();
+        // this is the url response defined in server.json
+      })
+      .then((response) => {
+        // if url exists, send user to that url
+        if (response.url) {
+          window.location.assign(response.url);
+        }
+      });
+  };
+
   // we don't have a function defined to count items in cart, but only need it for a "one off", so we can create it here
   const cartCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
   return (
@@ -43,7 +65,7 @@ function NavBarComponent() {
               ))}
               {/* .toFixed rounds to defined number of decimal places */}
               <h1>Total: ${cart.getTotalCostOfCart().toFixed(2)}</h1>
-              <button>Purchase</button>
+              <button onClick={checkout}>Purchase</button>
             </>
           ) : (
             <h1>There are no items in your cart</h1>
