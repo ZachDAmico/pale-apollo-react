@@ -8,12 +8,13 @@ Official website for Pale Apollo — a Nashville-based industrial noise rock ban
 - Custom vanilla JS audio player with playback controls
 - Direct links to Instagram and email contact
 - Fully responsive design
-- Merch store (in progress)
+- Merch store
+-  Stripe payment integration
+-  Bandsintown API integration
 
 ## In Progress
-- Stripe payment integration
 - Admin authentication
-- Bandsintown API integration
+
 
 ## Tech Stack
 - React
