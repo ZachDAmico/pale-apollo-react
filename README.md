@@ -12,6 +12,10 @@ Official website for Pale Apollo — a Nashville-based industrial noise rock ban
 - Direct links to Instagram and email contact
 - Fully responsive design
 
+## In Progress
+- Admin authentication
+
+
 ## Tech Stack
 
 **Frontend**
