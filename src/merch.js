@@ -1,12 +1,16 @@
+// shirt price_1TblytCp2AIg2GkuyYEVKHZ3
+// sticker price_1Tc3fbCp2AIg2GkuidTs3EfB
 const merchArray = [
   {
-    id: "1",
+    // switch back to live when ready
+    id: "price_1Tc6KpCp2AIg2Gku4UQ9TCD2",
     name: "short-sleeve shirt",
     img: "https://placehold.co/300x300",
     price: 20,
   },
   {
-    id: "2",
+    // switch back to live id when ready
+    id: "price_1Tc6L4Cp2AIg2GkuhOIE1nVG",
     name: "sticker",
     img: "https://placehold.co/300x300",
     price: 2,
