@@ -29,7 +29,7 @@ app.post("/checkout", async (request, response) => {
   //     }
   //  ]
   //   taking posted data from user
-  console.log(request.body);
+
   const items = request.body.items;
   //   formatting lineItems to be what stripe wants
   let lineItems = [];
@@ -49,7 +49,20 @@ app.post("/checkout", async (request, response) => {
   });
 
   //   because session is await, this will wait until session is fully loaded to send that created session url to the front end so user can checkout
-   response.json({ url: session.url });
+  response.json({ url: session.url });
 });
 
+app.get("/shows", async (request, responseToFront) => {
+  // this is making the GET request, knows what to target based on the url, the API key proves i have access
+  const showDataFromBIT = await fetch(
+    `https://rest.bandsintown.com/artists/Pale%20Apollo/events/?app_id=${process.env.BANDSINTOWN_API_KEY}`,
+  );
+  // this is the returned data(showData) converted from the response object into what javascript needs - think of it like unwrapping the unreadable object
+  const data = await showDataFromBIT.json();
+// this sends the readable json data back to the front end to display
+  responseToFront.json(data)
+});
+
+
+// .listen gives the server the port to run, console.log is just double checking for now
 app.listen(4000, () => console.log("Listening on port 4000"));
