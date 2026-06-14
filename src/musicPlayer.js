@@ -1,4 +1,3 @@
-
 // All code is wrapped in window.addEventListener('load') because this vanilla JS file
 // is imported into a React project. React renders the DOM asynchronously, so any
 // document.querySelector calls at the top level would return null since the elements
@@ -6,11 +5,12 @@
 // React has fully rendered the page before any DOM queries or event listeners execute.
 window.addEventListener("load", () => {
   // variables making connections to DOM elements should go before function that will be using those connections
-  const musicPlayer = document.querySelector(".musicPlayer");
+
   const trackNameDisplay = document.querySelector(".trackName");
   const playTrack = document.querySelector("#audioPlayer");
   const playPauseSwitch = document.querySelector(".playButton");
 
+  // remember setting this to 0 is the first song
   let trackListIndex = 0;
 
   const trackList = [
@@ -37,10 +37,13 @@ window.addEventListener("load", () => {
     // this was originally playTrack.src = trackList[trackListIndex].file;
     // which continuously reset the src state, which always set the .paused to be true
     // so clicking the play button would always play despite the if else statement.
+    //it's just how the browser works, every time you set .src on an audio element, it's treated as a new audio file - which would always start from .paused state
     // best way to debug would be to run this to see status
     // console.log("before src, paused =", playTrack.paused);
     // playTrack.src = trackList[trackListIndex].file;
     // console.log("after src, paused =", playTrack.paused);
+    // this is now saying "only set the src if there isn't one already"
+    // exactly the type of bug that React helps handle cleanly
     if (!playTrack.src) playTrack.src = trackList[trackListIndex].file;
 
     if (playTrack.paused) {

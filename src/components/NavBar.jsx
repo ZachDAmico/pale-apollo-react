@@ -1,5 +1,6 @@
-import { Modal, Navbar } from "react-bootstrap";
+import { Modal, Navbar, Nav } from "react-bootstrap";
 import { useState, useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { CartContext } from "../CartContext";
 import CartProduct from "./CartProduct";
 
@@ -40,9 +41,62 @@ function NavBarComponent() {
 
         {/* Navbar.Collapse - hides on small screens, shows when hamburger is clicked.
           justify-content-end pushes contents to the right */}
+        
         <Navbar.Collapse className="justify-content-end">
+          {/* Nav wraps a group of links - like a styled ul specifically for navbars */}
+          {/* me-auto adds margin-right: auto which pushes everything after it to the right */}
+          <Nav className="me-auto">
+            {/* only show home link when not on home page */}
+            {location.pathname !== "/" && (
+              <Nav.Link as={Link} to="/">
+                Home
+              </Nav.Link>
+            )}
+            {/* only show store link when not on store page */}
+            {location.pathname !== "/store" && (
+              <Nav.Link as={Link} to="/store">
+                Store
+              </Nav.Link>
+            )}
+            {/* only show shows link when not on shows page */}
+            {location.pathname !== "/shows" && (
+              <Nav.Link as={Link} to="/shows">
+                Shows
+              </Nav.Link>
+            )}
+          </Nav>
+
+          {/* second Nav group for social links - sits to the right because of me-auto above */}
+          <Nav>
+            {/* Nav.Link is a styled link item inside Nav - like a styled li/a combo */}
+            <Nav.Link
+              href="https://instagram.com/paleapolloband"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="instagramLogo" src="/media/instagram.png" />
+            </Nav.Link>
+            <Nav.Link href="mailto:paleapollo@gmail.com">
+              <img className="emailLogo" src="/media/email.png" />
+            </Nav.Link>
+          </Nav>
+
+          {/* cart button stays on far right */}
           <button onClick={openModal} className="cartButton">
-            <img src="/media/cart.png" alt="cart" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="cartIcon"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+              />
+            </svg>
             <span className="cartCount"> ({cartCount} Items) </span>
           </button>
         </Navbar.Collapse>

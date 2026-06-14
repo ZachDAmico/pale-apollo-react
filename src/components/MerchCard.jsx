@@ -21,42 +21,44 @@ function MerchCard(props) {
   return (
     <Card>
       <Card.Img src={item.img} alt={item.name} />
-      <Card.Body>
+      <Card.Body className="merchCardBody">
         <Card.Title>{item.name}</Card.Title>
         <Card.Text>${item.price}</Card.Text>
-        {itemQuantity > 0 ? (
-          <>
-            <Form as={Row}>
-              <Form.Label column="true" sm="6">
-                In Cart: {itemQuantity}
-              </Form.Label>
-              <Col sm="6">
-                <button
-                  sm="6"
-                  onClick={() => cart.addOneToCart(item.id)}
-                  className="mx-2"
-                >
-                  +
-                </button>
-                <button
-                  sm="6"
-                  onClick={() => cart.removeOneFromCart(item.id)}
-                  className="mx-2"
-                >
-                  -
-                </button>
-              </Col>
-            </Form>
-            <button onClick={() => cart.deleteAllOfOneItemFromCart(item.id)}>
-              Remove
+        <div className="merchCardButtons">
+          {itemQuantity > 0 ? (
+            <>
+              <Form as={Row}>
+                <Form.Label column="true" sm="6">
+                  In Cart: {itemQuantity}
+                </Form.Label>
+                <Col sm="6">
+                  <button
+                    sm="6"
+                    onClick={() => cart.addOneToCart(item.id)}
+                    className="mx-2"
+                  >
+                    +
+                  </button>
+                  <button
+                    sm="6"
+                    onClick={() => cart.removeOneFromCart(item.id)}
+                    className="mx-2"
+                  >
+                    -
+                  </button>
+                </Col>
+              </Form>
+              <button onClick={() => cart.deleteAllOfOneItemFromCart(item.id)}>
+                Remove
+              </button>
+            </>
+          ) : (
+            // /* needs to be cart. to have access to context */
+            <button onClick={() => cart.addOneToCart(item.id)}>
+              Add to Cart
             </button>
-          </>
-        ) : (
-          // /* needs to be cart. to have access to context */
-          <button onClick={() => cart.addOneToCart(item.id)}>
-            Add to Cart
-          </button>
-        )}
+          )}
+        </div>
       </Card.Body>
     </Card>
   );

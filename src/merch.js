@@ -5,18 +5,19 @@ const merchArray = [
     // switch back to live when ready
     id: "price_1Tc6KpCp2AIg2Gku4UQ9TCD2",
     name: "short-sleeve shirt",
-    img: "https://placehold.co/300x300",
+    img: "/media/shirt-nobackground.png",
     price: 20,
   },
   {
     // switch back to live id when ready
     id: "price_1Tc6L4Cp2AIg2GkuhOIE1nVG",
     name: "sticker",
-    img: "https://placehold.co/300x300",
+    img: "/media/sticker-nobackground.png",
     price: 2,
   },
 ];
 // helper function to retrieve all of an item's data based on the id of item in shopping cart
+// id being passed here from cartProduct
 const getMerchData = (id) => {
   let merchData = merchArray.find((item) => item.id === id);
 
