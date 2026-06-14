@@ -613,6 +613,7 @@ footer {
 .trackListContainer {
   display: flex;
   align-self: center;
+  min-width: 100px;
 }
 
 .trackListing {
