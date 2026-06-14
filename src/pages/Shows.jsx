@@ -17,7 +17,7 @@ function Shows() {
   // useEffect needed because shows are an api call outside the component. anything reaching outside the component needs useEffect to define how and when to run those side effects(anything beyond just returning a value)
   useEffect(() => {
     // remember every fetch needs to be parsed/"unwrapped"
-    fetch(`http://localhost:4000/shows`)
+    fetch(`https://pale-apollo-react.onrender.com/shows`)
       // .then() used to wait for response from the fetch
       // naming that response "response" right here as parameter, then apply .json() to "unwrap" raw data of response
       .then((response) => response.json())

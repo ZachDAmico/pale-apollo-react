@@ -48,8 +48,8 @@ app.post("/checkout", async (request, response) => {
   const session = await stripe.checkout.sessions.create({
     line_items: lineItems,
     mode: "payment",
-    success_url: "http://localhost:5173/success",
-    cancel_url: "http://localhost:5173/cancel",
+    success_url: "https://paleapolloband.com/success",
+    cancel_url: "https://paleapolloband.com/cancel",
   });
 
   //   because session is await, this will wait until session is fully loaded to send that created session url to the front end so user can checkout
