@@ -2,14 +2,18 @@
 // shirt price_1TblytCp2AIg2GkuyYEVKHZ3
 // sticker price_1Tc3fbCp2AIg2GkuidTs3EfB
 
+
+// this loads .env file so process.env works
 require("dotenv").config();
 const express = require("express");
+// cors allows frontend(which is 5173) to talk to backend port 4000
 let cors = require("cors");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 app.use(cors());
 app.use(express.static("public"));
+// this allows express to read json
 app.use(express.json());
 
 // sending post request to /checkout route
@@ -63,6 +67,9 @@ app.get("/shows", async (request, responseToFront) => {
   responseToFront.json(data)
 });
 
+
+const cloudinary = require('cloudinary').v2;
+cloudinary.config(process.env.CLOUDINARY_URL);
 
 // .listen gives the server the port to run, console.log is just double checking for now
 app.listen(4000, () => console.log("Listening on port 4000"));

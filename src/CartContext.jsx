@@ -3,7 +3,7 @@ import { merchArray, getMerchData } from "./merch";
 
 export const CartContext = createContext({
   items: [],
-  // you don't define function logic here, you are simply stating CAN define it later(outiside Context). that's why empty arrow function
+  // you don't define function logic here, you are simply stating it CAN define it later(outside Context). that's why empty arrow function
   //   think of them as empty placeholders initialized as empty
   getItemQuantity: () => {},
   addOneToCart: () => {},
@@ -36,7 +36,6 @@ export function CartProvider({ children }) {
   };
 
   const addOneToCart = (id) => {
-    // what does this line do?
     const quantity = getItemQuantity(id);
 
     if (quantity == 0) {
@@ -55,7 +54,7 @@ export function CartProvider({ children }) {
           (item) =>
             item.id === id // if condition
               ? { ...item, quantity: item.quantity + 1 } // if condition is true, do this(ternary statement)
-              : item, //else if first condition is false
+              : item, //else - if first condition isn't true, leave item unchanged because each iteration of the map has to return something
         ),
       );
     }

@@ -7,7 +7,7 @@ function ShowCard(props) {
     <>
       <Card>
         <Card.Img src="/media/IMG_3894 (1).jpg" alt={show.title} />
-        <Card.Title>{show.title}</Card.Title>
+        <Card.Title></Card.Title>
         <Card.Text>{show.venue.name}</Card.Text>
         <Card.Text>{show.venue.street_address}</Card.Text>
         <Card.Text>{show.venue.location}</Card.Text>

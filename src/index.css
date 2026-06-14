@@ -427,24 +427,37 @@ footer {
   margin: 0 auto;
 }
 
-.initialNavList {
+/* .initialNavList {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   margin: 2% 5% 2% 2%;
-}
+} */
 .instagramLogo {
   height: 28px;
   width: auto;
   display: block;
-  margin: 0 5px;
+  /* margin: 0 5px; */
 }
 
 .emailLogo {
   height: 28px;
   width: auto;
   display: block;
-  margin: 0 5px;
+  /* margin: 0 5px; */
+}
+
+.nav-link {
+  color: white;
+}
+
+.nav-link:hover {
+  color: black;
+  -webkit-text-stroke: 0.75px rgb(255, 255, 255, 0.5);
+}
+
+.navbar-nav {
+  margin: 0 1%;
 }
 
 .music {
@@ -668,4 +681,36 @@ footer {
 .contactButton {
   color: white;
   padding: 5px;
+}
+
+.cartButton {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.cartIcon {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+.cartCount {
+  display: inline-block;
+  color: white;
+  min-width: 80px;
+}
+
+.mainH1 {
+  -webkit-text-stroke: 0.75px rgb(255, 255, 255, 0.5);
+}
+
+.merchShowRow {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card {
+  height: 100%;
 }

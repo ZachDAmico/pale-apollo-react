@@ -8,9 +8,11 @@ function Store() {
     <>
       <Container>
         <NavBarComponent></NavBarComponent>
-        <h1 align="center">Welcome to the Pale Apollo Merch Store</h1>
+        <h1 align="center" className="mainH1">
+          Welcome to the Pale Apollo Merch Store
+        </h1>
         {/* dictating how many rows depending on screen size */}
-        <Row xs={1} md={3}>
+        <Row xs={1} md={3} className="merchShowRow">
           {/* mapping each object in merchArray, each object is defined as item
             passing item as a prop to MerchCard so it knows which product to display and storing that prop as item, hence item={item}*/}
           {/* text-center built in css class from bootstrap */}

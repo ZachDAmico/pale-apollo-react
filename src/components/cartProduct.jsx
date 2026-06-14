@@ -8,6 +8,7 @@ function CartProduct(props) {
   const cart = useContext(CartContext);
   const id = props.id;
   const quantity = props.quantity;
+  // this is the function call where id is being passed to getMerchData
   const merchData = getMerchData(id);
 
   return (
