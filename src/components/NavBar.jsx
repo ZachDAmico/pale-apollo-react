@@ -10,7 +10,7 @@ function NavBarComponent() {
   const closeModal = () => setShow(false);
   const openModal = () => setShow(true);
   const checkout = async () => {
-    await fetch("http://localhost:4000/checkout", {
+    await fetch("https://pale-apollo-react.onrender.com/checkout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -3,14 +3,14 @@
 const merchArray = [
   {
     // switch back to live when ready
-    id: "price_1Tc6KpCp2AIg2Gku4UQ9TCD2",
+    id: "price_1TblytCp2AIg2GkuyYEVKHZ3",
     name: "short-sleeve shirt",
     img: "/media/shirt-nobackground.png",
     price: 20,
   },
   {
     // switch back to live id when ready
-    id: "price_1Tc6L4Cp2AIg2GkuhOIE1nVG",
+    id: "price_1Tc3fbCp2AIg2GkuidTs3EfB",
     name: "sticker",
     img: "/media/sticker-nobackground.png",
     price: 2,
